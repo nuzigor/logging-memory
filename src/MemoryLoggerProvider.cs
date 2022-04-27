@@ -5,7 +5,9 @@ using Microsoft.Extensions.Logging;
 namespace Nuzigor.Extensions.Logging.Memory
 {
     [ProviderAlias("Memory")]
+#pragma warning disable CA1812
     internal sealed class MemoryLoggerProvider : ILoggerProvider, ISupportExternalScope
+#pragma warning restore CA1812
     {
         private readonly MemoryLoggerSink _memorySink;
         private readonly ConcurrentDictionary<string, MemoryLogger> _loggers = new ConcurrentDictionary<string, MemoryLogger>();

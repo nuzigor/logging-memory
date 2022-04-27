@@ -10,6 +10,9 @@ namespace Nuzigor.Extensions.Logging.Memory
     /// </summary>
     public sealed class LogEntry
     {
+        /// <summary>
+        /// Public constructor.
+        /// </summary>
         public LogEntry(
             DateTimeOffset timeOffset,
             string category,
@@ -71,6 +74,7 @@ namespace Nuzigor.Extensions.Logging.Memory
         /// </summary>
         public IReadOnlyCollection<LogState> Scopes { get; }
 
+        /// <inheritdoc />
         public override bool Equals(object? obj)
         {
             return obj is LogEntry entry &&
@@ -83,6 +87,7 @@ namespace Nuzigor.Extensions.Logging.Memory
                    Scopes.SequenceEqual(entry.Scopes);
         }
 
+        /// <inheritdoc />
         public override int GetHashCode()
         {
             int hashCode = -78854121;

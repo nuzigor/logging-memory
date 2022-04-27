@@ -7,7 +7,9 @@ using Microsoft.Extensions.Logging;
 
 namespace Nuzigor.Extensions.Logging.Memory
 {
+#pragma warning disable CA1812
     internal sealed class MemoryLoggerSink : IMemoryLoggerSink
+#pragma warning restore CA1812
     {
         private ConcurrentQueue<LogEntry> _logs = new ConcurrentQueue<LogEntry>();
 
@@ -40,7 +42,7 @@ namespace Nuzigor.Extensions.Logging.Memory
         /// <inheritdoc />
         public IReadOnlyCollection<LogEntry> Logs => _logs.ToArray();
 
-        private LogState CreateLogState(object state)
+        private static LogState CreateLogState(object state)
         {
             var message = Convert.ToString(state, CultureInfo.InvariantCulture) ?? string.Empty;
             var itemsArray = Array.Empty<KeyValuePair<string, object>>();

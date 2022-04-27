@@ -9,8 +9,14 @@ namespace Nuzigor.Extensions.Logging.Memory
     /// </summary>
     public sealed class LogState
     {
+        /// <summary>
+        /// Empty state.
+        /// </summary>
         public static LogState Empty { get; } = new LogState(string.Empty, Array.Empty<KeyValuePair<string, object>>());
 
+        /// <summary>
+        /// Public constructor.
+        /// </summary>
         public LogState(string message, IReadOnlyCollection<KeyValuePair<string, object>> properties)
         {
             Message = message ?? throw new ArgumentNullException(nameof(message));
@@ -34,12 +40,16 @@ namespace Nuzigor.Extensions.Logging.Memory
         /// </summary>
         public string OriginalFormat { get; }
 
+        /// <summary>
+        /// <see cref="ValueType"/> support.
+        /// </summary>
         public void Deconstruct(out string message, out IReadOnlyCollection<KeyValuePair<string, object>> properties)
         {
             message = Message;
             properties = Properties;
         }
 
+        /// <inheritdoc />
         public override bool Equals(object? obj)
         {
             return obj is LogState otherState &&
@@ -47,6 +57,7 @@ namespace Nuzigor.Extensions.Logging.Memory
                    Properties.SequenceEqual(otherState.Properties);
         }
 
+        /// <inheritdoc />
         public override int GetHashCode()
         {
             int hashCode = -1657424864;
