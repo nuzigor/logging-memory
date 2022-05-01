@@ -10,6 +10,7 @@
     <Authors>Igor Nuzhnov</Authors>
     <Description>Microsoft.Extensions.Logging provider to store logs in memory</Description>
     <PackageTags>Logging;Microsoft.Extensions.Logging;Testing</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/nuzigor/logging-memory</PackageProjectUrl>
     <RepositoryUrl>https://github.com/nuzigor/logging-memory.git</RepositoryUrl>
@@ -27,6 +28,10 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>
