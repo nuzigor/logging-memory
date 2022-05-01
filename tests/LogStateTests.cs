@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+
 using NUnit.Framework;
 
 namespace Nuzigor.Extensions.Logging.Memory.Tests;

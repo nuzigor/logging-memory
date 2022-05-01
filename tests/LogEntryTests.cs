@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+
 using Microsoft.Extensions.Logging;
+
 using NUnit.Framework;
 
 namespace Nuzigor.Extensions.Logging.Memory.Tests;
