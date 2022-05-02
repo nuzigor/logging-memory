@@ -1,4 +1,4 @@
-# logging-memory
+# Nuzigor.Extensions.Logging.Memory
 
 In-memory implementation of `Microsoft.Extensions.Logging.ILoggerProvider`.
 
