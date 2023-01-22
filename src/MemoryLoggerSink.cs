@@ -28,6 +28,8 @@ namespace Nuzigor.Extensions.Logging.Memory
     {
         private ConcurrentQueue<LogEntry> _logs = new ConcurrentQueue<LogEntry>();
 
+        public event EventHandler<LogEntry>? NewLogStored;
+
         public void Write<TState>(LogLevel logLevel, string category, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter, IExternalScopeProvider? scopeProvider)
         {
             string message = formatter(state, exception);
@@ -46,6 +48,17 @@ namespace Nuzigor.Extensions.Logging.Memory
 
             var logEntry = new LogEntry(now, category, logLevel, eventId, exception, message, logState, scopesArray);
             _logs.Enqueue(logEntry);
+
+            // Make a temporary copy of the event to avoid possibility of
+            // a race condition if the last subscriber unsubscribes
+            // immediately after the null check and before the event is raised.
+            EventHandler<LogEntry>? newLogStored = NewLogStored;
+
+            // Event will be null if there are no subscribers
+            if (newLogStored != null)
+            { 
+                newLogStored(this, logEntry);
+            }
         }
 
         /// <inheritdoc />
