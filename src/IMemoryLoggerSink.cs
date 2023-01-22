@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+using System;
 using System.Collections.Generic;
 
 namespace Nuzigor.Extensions.Logging.Memory
@@ -25,6 +26,12 @@ namespace Nuzigor.Extensions.Logging.Memory
         /// The captured logs.
         /// </summary>
         IReadOnlyCollection<LogEntry> Logs { get; }
+
+        /// <summary>
+        /// Action that will be invoked every time a new LogEntry is stored
+        /// </summary>
+        event EventHandler<LogEntry> NewLogStored;
+
 
         /// <summary>
         /// Clear the captured logs.
